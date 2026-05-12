@@ -46,7 +46,328 @@
 
   <main id="patient" class="screen"><nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Кабінет пацієнта</a></li></ul><div class="navright"><a class="btn primary">Нова консультація</a></div></nav><div class="container dashboard"><aside class="sidebar"><div class="usercard"><div class="avatar" style="margin:0 auto 12px">ІП</div><div class="name">Ірина Петренко</div><div class="spec">Пацієнт з 2026</div></div><div><div class="sideitem active">📅 Консультації</div><div class="sideitem">📁 Медичні записи</div><div class="sideitem">💳 Оплати</div><div class="sideitem">🎁 Реферали</div><div class="sideitem">⚙️ Налаштування</div></div></aside><section><h1 class="title">Кабінет пацієнта</h1><p class="sub">Сьогодні, 12 травня 2026</p><div class="metrics"><div class="metric"><b>2</b><small>майбутні консультації</small></div><div class="metric"><b>7</b><small>медичних записів</small></div><div class="metric"><b>15%</b><small>реферальна знижка</small></div></div><h3 class="card-title">Найближчі консультації</h3><article class="appointment"><div class="datebox"><b>13</b><small>трав</small></div><div class="avatar">ОМ</div><div><div class="name">Олена Мартиненко</div><div class="spec">Кардіологія · 12:00 · Zoom link буде доступний за 15 хв</div></div><button class="btn primary">Відкрити</button></article><article class="appointment"><div class="datebox"><b>18</b><small>трав</small></div><div class="avatar a4">ТР</div><div><div class="name">Тарас Романюк</div><div class="spec">Реабілітолог · 18:30 · програма вправ</div></div><button class="btn outline">Деталі</button></article><h3 class="card-title" style="margin-top:24px">Медичні записи</h3><div class="records"><div class="record"><div class="icon">🧾</div><div class="name">Аналіз крові</div><div class="spec">PDF · 10.05.2026</div></div><div class="record"><div class="icon">🩻</div><div class="name">МРТ коліна</div><div class="spec">DICOM · 02.05.2026</div></div><div class="record"><div class="icon">＋</div><div class="name">Додати файл</div><div class="spec">PDF, JPG, PNG, DICOM</div></div></div></section></div></main>
 
-  <main id="doctor" class="screen"><nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Кабінет лікаря</a></li></ul><div class="navright"><a class="btn primary">Додати слот</a></div></nav><div class="container dashboard"><aside class="sidebar"><div class="usercard"><div class="avatar">ОМ</div><div class="name">Олена Мартиненко</div><div class="spec">Верифікований лікар</div></div><div><div class="sideitem active">📊 Огляд</div><div class="sideitem">📅 Розклад</div><div class="sideitem">👥 Пацієнти</div><div class="sideitem">📄 Документи</div><div class="sideitem">💸 Виплати</div></div></aside><section><div class="earnings"><div class="spec" style="color:rgba(255,255,255,.55)">Дохід за травень</div><b>42 850 ₴</b><div style="color:var(--emerald);font-weight:800">↑ +18% до минулого місяця</div></div><div class="metrics"><div class="metric"><b>36</b><small>консультацій</small></div><div class="metric"><b>4.9</b><small>середній рейтинг</small></div><div class="metric"><b>12</b><small>слотів доступно</small></div></div><h3 class="card-title">Активність</h3><div class="bars"><div class="bar" style="height:45%"></div><div class="bar" style="height:72%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:88%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:95%"></div><div class="bar" style="height:78%"></div></div><section class="queue"><h3 class="card-title">Черга пацієнтів сьогодні</h3><article class="appointment"><div class="datebox"><b>12</b><small>трав</small></div><div class="avatar a5">ІП</div><div><div class="name">Ірина Петренко</div><div class="spec">Повторна консультація · 12:00</div></div><button class="btn primary">Почати</button></article></section></section></div></main>
+  <style>
+    .doc-panel{display:none}.doc-panel.active{display:block}
+    .doctor-avatar-img{width:72px;height:72px;border-radius:50%;margin:0 auto 12px;display:block;overflow:hidden;background:linear-gradient(135deg,#f093fb,#f5576c)}
+    .sideitem{cursor:pointer}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0}
+    .cal-day{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted)}
+    .cal-day.hd{color:var(--navy);background:var(--bg);cursor:pointer;border-radius:10px}
+    .cal-day.has-apt{background:var(--emerald-l);color:var(--emerald-d);border-radius:10px}
+    .cal-day.today{background:var(--emerald);color:#fff;border-radius:10px}
+    .schedule-apt{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+    .schedule-apt .time-badge{background:var(--emerald-l);color:var(--emerald-d);font-family:Syne,sans-serif;font-weight:800;font-size:15px;border-radius:12px;padding:8px 12px;white-space:nowrap}
+    .pat-row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+    .pat-row .pat-avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;flex:0 0 auto}
+    .pat-row .pat-info{flex:1}
+    .pat-row .pat-next{font-size:12px;color:var(--muted);margin-top:3px}
+    .doc-file-row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+    .doc-file-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:0 0 auto}
+    .payment-row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+    .payment-row .pay-amount{font-family:Syne,sans-serif;font-weight:800;font-size:17px;color:var(--emerald);margin-left:auto;white-space:nowrap}
+    .pay-status{font-size:11px;font-weight:700;border-radius:var(--pill);padding:4px 9px}
+    .pay-status.done{background:var(--emerald-l);color:var(--emerald-d)}
+    .pay-status.pend{background:#FEF3C7;color:#92400E}
+  </style>
+
+  <main id="doctor" class="screen">
+    <nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Кабінет лікаря</a></li></ul><div class="navright"><a class="btn primary">Додати слот</a></div></nav>
+    <div class="container dashboard">
+      <aside class="sidebar">
+        <div class="usercard">
+          <svg class="doctor-avatar-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f093fb"/><stop offset="100%" style="stop-color:#f5576c"/></linearGradient></defs>
+            <circle cx="50" cy="50" r="50" fill="url(#bg)"/>
+            <!-- hair -->
+            <ellipse cx="50" cy="28" rx="22" ry="18" fill="#3B1F0A"/>
+            <ellipse cx="30" cy="42" rx="9" ry="16" fill="#3B1F0A"/>
+            <ellipse cx="70" cy="42" rx="9" ry="16" fill="#3B1F0A"/>
+            <!-- face -->
+            <ellipse cx="50" cy="50" rx="20" ry="22" fill="#FDDBB4"/>
+            <!-- eyes -->
+            <ellipse cx="43" cy="46" rx="3" ry="3.5" fill="#2D1B00"/>
+            <ellipse cx="57" cy="46" rx="3" ry="3.5" fill="#2D1B00"/>
+            <circle cx="44" cy="45" r="1" fill="#fff"/>
+            <circle cx="58" cy="45" r="1" fill="#fff"/>
+            <!-- blush -->
+            <ellipse cx="39" cy="54" rx="5" ry="3" fill="#F4A0A0" opacity=".5"/>
+            <ellipse cx="61" cy="54" rx="5" ry="3" fill="#F4A0A0" opacity=".5"/>
+            <!-- smile -->
+            <path d="M43 57 Q50 64 57 57" stroke="#C0392B" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- teeth hint -->
+            <path d="M44 57.5 Q50 62 56 57.5" fill="#fff"/>
+            <!-- neck -->
+            <rect x="44" y="70" width="12" height="10" rx="5" fill="#FDDBB4"/>
+            <!-- collar -->
+            <path d="M20 100 Q35 78 50 80 Q65 78 80 100" fill="#fff"/>
+            <path d="M50 80 L44 92 L50 88 L56 92 Z" fill="#E8562A"/>
+          </svg>
+          <div class="name">Олена Мартиненко</div>
+          <div class="spec">Верифікований лікар</div>
+        </div>
+        <div>
+          <div class="sideitem active" data-doc-panel="doc-home">🏠 Головна</div>
+          <div class="sideitem" data-doc-panel="doc-schedule">📅 Розклад</div>
+          <div class="sideitem" data-doc-panel="doc-patients">👥 Пацієнти</div>
+          <div class="sideitem" data-doc-panel="doc-documents">📄 Документи</div>
+          <div class="sideitem" data-doc-panel="doc-payments">💸 Виплати</div>
+        </div>
+      </aside>
+
+      <section>
+        <!-- Головна -->
+        <div id="doc-home" class="doc-panel active">
+          <div class="earnings"><div class="spec" style="color:rgba(255,255,255,.55)">Дохід за травень</div><b>42 850 ₴</b><div style="color:var(--emerald);font-weight:800">↑ +18% до минулого місяця</div></div>
+          <div class="metrics"><div class="metric"><b>36</b><small>консультацій</small></div><div class="metric"><b>4.9</b><small>середній рейтинг</small></div><div class="metric"><b>12</b><small>слотів доступно</small></div></div>
+          <h3 class="card-title">Активність</h3>
+          <div class="bars"><div class="bar" style="height:45%"></div><div class="bar" style="height:72%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:88%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:95%"></div><div class="bar" style="height:78%"></div></div>
+          <section class="queue"><h3 class="card-title">Черга пацієнтів сьогодні</h3><article class="appointment"><div class="datebox"><b>12</b><small>трав</small></div><div class="avatar a5">ІП</div><div><div class="name">Ірина Петренко</div><div class="spec">Повторна консультація · 12:00</div></div><button class="btn primary">Почати</button></article></section>
+        </div>
+
+        <!-- Розклад -->
+        <div id="doc-schedule" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Розклад</h2>
+          <p class="sub" style="margin-bottom:20px">Травень 2026</p>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:20px">
+            <div class="cal-grid">
+              <span class="cal-day">Пн</span><span class="cal-day">Вт</span><span class="cal-day">Ср</span><span class="cal-day">Чт</span><span class="cal-day">Пт</span><span class="cal-day">Сб</span><span class="cal-day">Нд</span>
+              <span class="cal-day"></span><span class="cal-day"></span><span class="cal-day"></span><span class="cal-day hd">1</span><span class="cal-day hd">2</span><span class="cal-day">3</span><span class="cal-day">4</span>
+              <span class="cal-day has-apt">5</span><span class="cal-day has-apt">6</span><span class="cal-day hd">7</span><span class="cal-day has-apt">8</span><span class="cal-day has-apt">9</span><span class="cal-day">10</span><span class="cal-day">11</span>
+              <span class="cal-day today">12</span><span class="cal-day has-apt">13</span><span class="cal-day has-apt">14</span><span class="cal-day hd">15</span><span class="cal-day has-apt">16</span><span class="cal-day">17</span><span class="cal-day">18</span>
+              <span class="cal-day has-apt">19</span><span class="cal-day has-apt">20</span><span class="cal-day hd">21</span><span class="cal-day has-apt">22</span><span class="cal-day has-apt">23</span><span class="cal-day">24</span><span class="cal-day">25</span>
+              <span class="cal-day has-apt">26</span><span class="cal-day has-apt">27</span><span class="cal-day hd">28</span><span class="cal-day has-apt">29</span><span class="cal-day hd">30</span><span class="cal-day hd">31</span>
+            </div>
+            <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:8px">
+              <span><span style="display:inline-block;width:12px;height:12px;border-radius:4px;background:var(--emerald);margin-right:4px;vertical-align:middle"></span>Сьогодні</span>
+              <span><span style="display:inline-block;width:12px;height:12px;border-radius:4px;background:var(--emerald-l);margin-right:4px;vertical-align:middle"></span>Є записи</span>
+            </div>
+          </div>
+          <h3 class="card-title">Записи на сьогодні — 12 травня</h3>
+          <div class="schedule-apt">
+            <div class="time-badge">10:30</div>
+            <div class="avatar a2" style="width:42px;height:42px;font-size:13px">МК</div>
+            <div style="flex:1"><div class="name">Марія Козаченко</div><div class="spec">Первинна консультація · Кардіологія</div></div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Почати</button>
+          </div>
+          <div class="schedule-apt">
+            <div class="time-badge">12:00</div>
+            <div class="avatar a5" style="width:42px;height:42px;font-size:13px">ІП</div>
+            <div style="flex:1"><div class="name">Ірина Петренко</div><div class="spec">Повторна консультація · Кардіологія</div></div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Почати</button>
+          </div>
+          <div class="schedule-apt">
+            <div class="time-badge">15:15</div>
+            <div class="avatar a3" style="width:42px;height:42px;font-size:13px">ВС</div>
+            <div style="flex:1"><div class="name">Василь Сидоренко</div><div class="spec">ЕКГ консультація · Кардіологія</div></div>
+            <button class="btn outline" style="padding:8px 14px;font-size:12px">Деталі</button>
+          </div>
+          <div class="schedule-apt">
+            <div class="time-badge">18:45</div>
+            <div class="avatar a4" style="width:42px;height:42px;font-size:13px">ОЛ</div>
+            <div style="flex:1"><div class="name">Ольга Левченко</div><div class="spec">Перегляд аналізів · Кардіологія</div></div>
+            <button class="btn outline" style="padding:8px 14px;font-size:12px">Деталі</button>
+          </div>
+        </div>
+
+        <!-- Пацієнти -->
+        <div id="doc-patients" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Пацієнти</h2>
+          <p class="sub" style="margin-bottom:20px">36 пацієнтів · Активні консультації</p>
+          <div class="pat-row">
+            <div class="pat-avatar a5">ІП</div>
+            <div class="pat-info">
+              <div class="name">Ірина Петренко</div>
+              <div class="pat-next">Наступна консультація: 13 травня, 12:00</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 3 консультації</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar a2">МК</div>
+            <div class="pat-info">
+              <div class="name">Марія Козаченко</div>
+              <div class="pat-next">Наступна консультація: 12 травня, 10:30</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 1 консультація</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar a3">ВС</div>
+            <div class="pat-info">
+              <div class="name">Василь Сидоренко</div>
+              <div class="pat-next">Наступна консультація: 12 травня, 15:15</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 2 консультації</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar a4">ОЛ</div>
+            <div class="pat-info">
+              <div class="name">Ольга Левченко</div>
+              <div class="pat-next">Наступна консультація: 12 травня, 18:45</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 5 консультацій</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">РБ</div>
+            <div class="pat-info">
+              <div class="name">Роман Білик</div>
+              <div class="pat-next">Наступна консультація: 16 травня, 11:00</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 4 консультації</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar" style="background:linear-gradient(135deg,#f7971e,#ffd200)">НТ</div>
+            <div class="pat-info">
+              <div class="name">Наталія Ткаченко</div>
+              <div class="pat-next">Наступна консультація: 19 травня, 14:00</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 7 консультацій</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">ДМ</div>
+            <div class="pat-info">
+              <div class="name">Дмитро Мороз</div>
+              <div class="pat-next">Наступна консультація: 22 травня, 09:00</div>
+              <div class="pat-next" style="margin-top:2px">Кардіологія · 2 консультації</div>
+            </div>
+            <button class="btn primary" style="padding:8px 14px;font-size:12px">Картка</button>
+          </div>
+        </div>
+
+        <!-- Документи -->
+        <div id="doc-documents" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Документи</h2>
+          <p class="sub" style="margin-bottom:20px">Документи, завантажені на платформу для верифікації</p>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#DBEAFE">📄</div>
+            <div style="flex:1">
+              <div class="name">Диплом лікаря</div>
+              <div class="spec">PDF · Завантажено 15.02.2026 · 2.4 МБ</div>
+            </div>
+            <span class="pay-status done">Верифіковано</span>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#DBEAFE">📄</div>
+            <div style="flex:1">
+              <div class="name">Сертифікат кардіолога</div>
+              <div class="spec">PDF · Завантажено 15.02.2026 · 1.1 МБ</div>
+            </div>
+            <span class="pay-status done">Верифіковано</span>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#FEF3C7">📋</div>
+            <div style="flex:1">
+              <div class="name">Ліцензія на медичну практику</div>
+              <div class="spec">PDF · Завантажено 15.02.2026 · 890 КБ</div>
+            </div>
+            <span class="pay-status done">Верифіковано</span>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#F3E8FF">🎓</div>
+            <div style="flex:1">
+              <div class="name">Сертифікат міжнародного курсу ESC</div>
+              <div class="spec">PDF · Завантажено 02.03.2026 · 1.8 МБ</div>
+            </div>
+            <span class="pay-status done">Верифіковано</span>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#FEF3C7">📋</div>
+            <div style="flex:1">
+              <div class="name">Свідоцтво про підвищення кваліфікації</div>
+              <div class="spec">PDF · Завантажено 10.04.2026 · 560 КБ</div>
+            </div>
+            <span class="pay-status pend">На перевірці</span>
+          </div>
+          <div class="doc-file-row" style="border:2px dashed var(--border);background:var(--bg);cursor:pointer">
+            <div class="doc-file-icon" style="background:var(--emerald-l)">➕</div>
+            <div style="flex:1">
+              <div class="name" style="color:var(--emerald-d)">Завантажити новий документ</div>
+              <div class="spec">PDF, JPG, PNG — до 10 МБ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Виплати -->
+        <div id="doc-payments" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Виплати</h2>
+          <p class="sub" style="margin-bottom:16px">Надходження за консультації</p>
+          <div class="earnings" style="margin-bottom:20px">
+            <div class="spec" style="color:rgba(255,255,255,.55)">Травень 2026 · Загалом</div>
+            <b>42 850 ₴</b>
+            <div style="color:var(--emerald);font-weight:800">↑ +18% до минулого місяця</div>
+          </div>
+          <h3 class="card-title">Останні надходження</h3>
+          <div class="payment-row">
+            <div class="avatar a5" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">ІП</div>
+            <div style="flex:1">
+              <div class="name">Ірина Петренко</div>
+              <div class="spec">Повторна консультація · 09.05.2026</div>
+            </div>
+            <span class="pay-status done" style="margin-right:12px">Виплачено</span>
+            <div class="pay-amount">850 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar a2" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">МК</div>
+            <div style="flex:1">
+              <div class="name">Марія Козаченко</div>
+              <div class="spec">Первинна консультація · 08.05.2026</div>
+            </div>
+            <span class="pay-status done" style="margin-right:12px">Виплачено</span>
+            <div class="pay-amount">850 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar a3" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">ВС</div>
+            <div style="flex:1">
+              <div class="name">Василь Сидоренко</div>
+              <div class="spec">ЕКГ консультація · 07.05.2026</div>
+            </div>
+            <span class="pay-status done" style="margin-right:12px">Виплачено</span>
+            <div class="pay-amount">850 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar a4" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">ОЛ</div>
+            <div style="flex:1">
+              <div class="name">Ольга Левченко</div>
+              <div class="spec">Перегляд аналізів · 06.05.2026</div>
+            </div>
+            <span class="pay-status done" style="margin-right:12px">Виплачено</span>
+            <div class="pay-amount">850 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar" style="width:42px;height:42px;font-size:13px;flex:0 0 auto;background:linear-gradient(135deg,#43e97b,#38f9d7)">РБ</div>
+            <div style="flex:1">
+              <div class="name">Роман Білик</div>
+              <div class="spec">Первинна консультація · 05.05.2026</div>
+            </div>
+            <span class="pay-status pend" style="margin-right:12px">Очікується</span>
+            <div class="pay-amount" style="color:var(--gold)">850 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar" style="width:42px;height:42px;font-size:13px;flex:0 0 auto;background:linear-gradient(135deg,#f7971e,#ffd200)">НТ</div>
+            <div style="flex:1">
+              <div class="name">Наталія Ткаченко</div>
+              <div class="spec">Повторна консультація · 04.05.2026</div>
+            </div>
+            <span class="pay-status done" style="margin-right:12px">Виплачено</span>
+            <div class="pay-amount">850 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar" style="width:42px;height:42px;font-size:13px;flex:0 0 auto;background:linear-gradient(135deg,#4facfe,#00f2fe)">ДМ</div>
+            <div style="flex:1">
+              <div class="name">Дмитро Мороз</div>
+              <div class="spec">Первинна консультація · 03.05.2026</div>
+            </div>
+            <span class="pay-status done" style="margin-right:12px">Виплачено</span>
+            <div class="pay-amount">850 ₴</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <main id="booking" class="screen"><nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Бронювання</a></li></ul></nav><div class="container booking-wrap"><div class="progress"><div class="step done">Лікар</div><div class="step active">Дата й час</div><div class="step">Оплата</div><div class="step">Підтвердження</div></div><div class="booking-grid"><section class="panel"><h2 class="title">Оберіть дату консультації</h2><p class="sub">Доступні слоти лікаря Олени Мартиненко.</p><div class="fullcal"><span class="cday off">1</span><span class="cday off">2</span><span class="cday">3</span><span class="cday">4</span><span class="cday">5</span><span class="cday">6</span><span class="cday">7</span><span class="cday">8</span><span class="cday">9</span><span class="cday">10</span><span class="cday">11</span><span class="cday active">12</span><span class="cday">13</span><span class="cday">14</span><span class="cday">15</span><span class="cday">16</span><span class="cday">17</span><span class="cday">18</span><span class="cday">19</span><span class="cday">20</span><span class="cday">21</span></div><h3 class="card-title">Доступний час</h3><div class="slots"><span class="slot">10:30</span><span class="slot active">12:00</span><span class="slot">18:45</span><span class="slot">21:15</span></div><h3 class="card-title" style="margin-top:24px">Оплата</h3><div class="pay"><input class="input full" placeholder="Номер картки"><input class="input" placeholder="MM/YY"><input class="input" placeholder="CVV"></div></section><aside class="panel"><div class="doctor-row" style="padding:0 0 16px 0"><div class="avatar">ОМ</div><div><div class="name">Олена Мартиненко</div><div class="spec">Кардіологія</div></div></div><div class="summary-line"><span>Дата</span><b>12 травня</b></div><div class="summary-line"><span>Час</span><b>12:00</b></div><div class="summary-line"><span>Консультація</span><b>850 ₴</b></div><div class="summary-line"><span>Реферальна знижка</span><b>-15%</b></div><div class="summary-line" style="font-size:18px"><span>Разом</span><b>722 ₴</b></div><button class="btn primary" style="width:100%;margin-top:18px">Підтвердити бронювання</button></aside></div></div></main>
 
@@ -73,6 +394,7 @@
     buttons.forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.screen)));
     document.querySelectorAll('[data-screen-link]').forEach(link=>link.addEventListener('click',()=>showScreen(link.dataset.screenLink)));
     document.querySelectorAll('.slot,.day.ok,.cday,.tab2').forEach(el=>el.addEventListener('click',()=>{const p=el.parentElement;if(p){[...p.children].forEach(x=>x.classList.remove('active'))}el.classList.add('active')}));
+    document.querySelectorAll('[data-doc-panel]').forEach(item=>{item.addEventListener('click',()=>{const panelId=item.dataset.docPanel;document.querySelectorAll('.doc-panel').forEach(p=>p.classList.remove('active'));document.getElementById(panelId).classList.add('active');document.querySelectorAll('[data-doc-panel]').forEach(s=>s.classList.remove('active'));item.classList.add('active');});});
   </script>
 </body>
 </html>
