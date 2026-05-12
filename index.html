@@ -44,7 +44,279 @@
 
   <main id="profile" class="screen"><nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a>Лікарі</a></li><li><a class="active">Профіль</a></li></ul><div class="navright"><a class="btn primary" data-screen-link="booking">Записатись</a></div></nav><section class="profile-hero"><div class="container profile-head"><div class="big-avatar">ОМ</div><div class="profile-info"><h1>Олена Мартиненко</h1><p style="color:rgba(255,255,255,.6)">Кардіолог · 14 років досвіду · 4.9 (312 відгуків)</p></div><div class="profile-actions"><button class="btn outline" style="color:#fff;border-color:rgba(255,255,255,.35)">♡ Зберегти</button><button class="btn primary" data-screen-link="booking">Записатись</button></div></div></section><div class="container profile-body"><section class="panel"><div class="tabs2"><span class="tab2 active">Про лікаря</span><span class="tab2">Сертифікати</span><span class="tab2">Відгуки</span></div><h3>Опис</h3><p>Кардіолог з досвідом у діагностиці серцево-судинних захворювань, супроводі пацієнтів після обстежень та інтерпретації результатів ЕКГ, УЗД серця і лабораторних аналізів.</p><h3>Документи</h3><p>Диплом, спеціалізація та сертифікати підтверджені адміністрацією платформи. При закінченні строку дії документів профіль автоматично призупиняється до повторної верифікації.</p><h3>Відгуки</h3><p>“Детально пояснила результати аналізів і дала зрозумілий план наступних дій.” — Ірина, 12 травня 2026.</p></section><aside class="panel booking"><div class="card-title">Бронювання</div><div class="price" style="font-size:28px;margin-bottom:14px">850 ₴ <span class="spec">/ консультація</span></div><p class="spec">Травень 2026</p><div class="calendar"><span class="day">Пн</span><span class="day">Вт</span><span class="day">Ср</span><span class="day">Чт</span><span class="day">Пт</span><span class="day">Сб</span><span class="day">Нд</span><span class="day ok">12</span><span class="day ok active">13</span><span class="day ok">14</span><span class="day ok">15</span><span class="day">16</span><span class="day">17</span><span class="day">18</span></div><p class="spec">Доступний час</p><div class="times"><span class="time">10:30</span><span class="time">12:00</span><span class="time">18:45</span></div><button class="btn primary" style="width:100%;margin-top:18px">Продовжити</button></aside></div></main>
 
-  <main id="patient" class="screen"><nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Кабінет пацієнта</a></li></ul><div class="navright"><a class="btn primary">Нова консультація</a></div></nav><div class="container dashboard"><aside class="sidebar"><div class="usercard"><div class="avatar" style="margin:0 auto 12px">ІП</div><div class="name">Ірина Петренко</div><div class="spec">Пацієнт з 2026</div></div><div><div class="sideitem active">📅 Консультації</div><div class="sideitem">📁 Медичні записи</div><div class="sideitem">💳 Оплати</div><div class="sideitem">🎁 Реферали</div><div class="sideitem">⚙️ Налаштування</div></div></aside><section><h1 class="title">Кабінет пацієнта</h1><p class="sub">Сьогодні, 12 травня 2026</p><div class="metrics"><div class="metric"><b>2</b><small>майбутні консультації</small></div><div class="metric"><b>7</b><small>медичних записів</small></div><div class="metric"><b>15%</b><small>реферальна знижка</small></div></div><h3 class="card-title">Найближчі консультації</h3><article class="appointment"><div class="datebox"><b>13</b><small>трав</small></div><div class="avatar">ОМ</div><div><div class="name">Олена Мартиненко</div><div class="spec">Кардіологія · 12:00 · Zoom link буде доступний за 15 хв</div></div><button class="btn primary">Відкрити</button></article><article class="appointment"><div class="datebox"><b>18</b><small>трав</small></div><div class="avatar a4">ТР</div><div><div class="name">Тарас Романюк</div><div class="spec">Реабілітолог · 18:30 · програма вправ</div></div><button class="btn outline">Деталі</button></article><h3 class="card-title" style="margin-top:24px">Медичні записи</h3><div class="records"><div class="record"><div class="icon">🧾</div><div class="name">Аналіз крові</div><div class="spec">PDF · 10.05.2026</div></div><div class="record"><div class="icon">🩻</div><div class="name">МРТ коліна</div><div class="spec">DICOM · 02.05.2026</div></div><div class="record"><div class="icon">＋</div><div class="name">Додати файл</div><div class="spec">PDF, JPG, PNG, DICOM</div></div></div></section></div></main>
+  <main id="patient" class="screen">
+    <nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Кабінет пацієнта</a></li></ul><div class="navright"><a class="btn primary">Нова консультація</a></div></nav>
+    <div class="container dashboard">
+      <aside class="sidebar">
+        <div class="usercard">
+          <svg class="doctor-avatar-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="pbg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#4facfe"/><stop offset="100%" style="stop-color:#00f2fe"/></linearGradient></defs>
+            <circle cx="50" cy="50" r="50" fill="url(#pbg)"/>
+            <!-- short hair -->
+            <ellipse cx="50" cy="27" rx="21" ry="16" fill="#2C1A0E"/>
+            <ellipse cx="30" cy="38" rx="7" ry="11" fill="#2C1A0E"/>
+            <ellipse cx="70" cy="38" rx="7" ry="11" fill="#2C1A0E"/>
+            <rect x="29" y="32" width="42" height="8" rx="4" fill="#2C1A0E"/>
+            <!-- face -->
+            <ellipse cx="50" cy="50" rx="19" ry="21" fill="#FDDBB4"/>
+            <!-- eyes -->
+            <ellipse cx="43" cy="46" rx="3" ry="3.2" fill="#1A1A2E"/>
+            <ellipse cx="57" cy="46" rx="3" ry="3.2" fill="#1A1A2E"/>
+            <circle cx="44" cy="45" r="1" fill="#fff"/>
+            <circle cx="58" cy="45" r="1" fill="#fff"/>
+            <!-- eyebrows -->
+            <path d="M40 41 Q43 39 46 41" stroke="#2C1A0E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M54 41 Q57 39 60 41" stroke="#2C1A0E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- blush -->
+            <ellipse cx="39" cy="54" rx="5" ry="3" fill="#F4A0A0" opacity=".4"/>
+            <ellipse cx="61" cy="54" rx="5" ry="3" fill="#F4A0A0" opacity=".4"/>
+            <!-- smile -->
+            <path d="M43 57 Q50 65 57 57" stroke="#C0392B" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M44 57.5 Q50 63 56 57.5" fill="#fff"/>
+            <!-- neck -->
+            <rect x="44" y="70" width="12" height="10" rx="5" fill="#FDDBB4"/>
+            <!-- shirt -->
+            <path d="M18 100 Q32 76 50 80 Q68 76 82 100" fill="#2980B9"/>
+            <path d="M50 80 L44 88 L50 86 L56 88 Z" fill="#1A5276"/>
+          </svg>
+          <div class="name" id="pat-display-name">Ірина Петренко</div>
+          <div class="spec">Пацієнт з 2026</div>
+        </div>
+        <div>
+          <div class="sideitem active" data-pat-panel="pat-consultations">📅 Консультації</div>
+          <div class="sideitem" data-pat-panel="pat-records">📁 Медичні записи</div>
+          <div class="sideitem" data-pat-panel="pat-payments">💳 Оплати</div>
+          <div class="sideitem" data-pat-panel="pat-referrals">🎁 Реферали</div>
+          <div class="sideitem" data-pat-panel="pat-settings">⚙️ Налаштування</div>
+        </div>
+      </aside>
+
+      <section>
+        <!-- Консультації -->
+        <div id="pat-consultations" class="doc-panel active">
+          <h1 class="title">Кабінет пацієнта</h1>
+          <p class="sub">Сьогодні, 12 травня 2026</p>
+          <div class="metrics">
+            <div class="metric"><b>2</b><small>майбутні консультації</small></div>
+            <div class="metric"><b>7</b><small>медичних записів</small></div>
+            <div class="metric"><b>15%</b><small>реферальна знижка</small></div>
+          </div>
+          <h3 class="card-title">Найближчі консультації</h3>
+          <article class="appointment"><div class="datebox"><b>13</b><small>трав</small></div><div class="avatar">ОМ</div><div><div class="name">Олена Мартиненко</div><div class="spec">Кардіологія · 12:00 · Zoom link буде доступний за 15 хв</div></div><button class="btn primary">Відкрити</button></article>
+          <article class="appointment"><div class="datebox"><b>18</b><small>трав</small></div><div class="avatar a4">ТР</div><div><div class="name">Тарас Романюк</div><div class="spec">Реабілітолог · 18:30 · програма вправ</div></div><button class="btn outline">Деталі</button></article>
+        </div>
+
+        <!-- Медичні записи -->
+        <div id="pat-records" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Медичні записи</h2>
+          <p class="sub" style="margin-bottom:20px">Всі завантажені документи та результати обстежень</p>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#DBEAFE">🧾</div>
+            <div style="flex:1"><div class="name">Загальний аналіз крові</div><div class="spec">PDF · 10.05.2026 · 320 КБ · Від: КНП «Клінічна лікарня №1»</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#EDE9FE">🩻</div>
+            <div style="flex:1"><div class="name">МРТ правого коліна</div><div class="spec">DICOM · 02.05.2026 · 48 МБ · Центр діагностики «МедСкан»</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#FEF3C7">📋</div>
+            <div style="flex:1"><div class="name">Біохімічний аналіз крові</div><div class="spec">PDF · 28.04.2026 · 215 КБ · Від: Олена Мартиненко (MedSpace)</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#DCFCE7">❤️</div>
+            <div style="flex:1"><div class="name">ЕКГ — спокій та навантаження</div><div class="spec">PDF · 20.04.2026 · 1.2 МБ · Від: Олена Мартиненко (MedSpace)</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#FFE4E6">🫀</div>
+            <div style="flex:1"><div class="name">УЗД серця (ехокардіографія)</div><div class="spec">PDF · 15.04.2026 · 890 КБ · Центр кардіології «Пульс»</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#DBEAFE">🧪</div>
+            <div style="flex:1"><div class="name">Аналіз на гормони щитоподібної залози</div><div class="spec">PDF · 05.04.2026 · 178 КБ · Лабораторія «Сінево»</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row">
+            <div class="doc-file-icon" style="background:#EDE9FE">🦴</div>
+            <div style="flex:1"><div class="name">Рентген хребта (бічна проєкція)</div><div class="spec">DICOM · 22.03.2026 · 12 МБ · Від: Тарас Романюк (MedSpace)</div></div>
+            <button class="btn outline" style="padding:7px 13px;font-size:12px">Відкрити</button>
+          </div>
+          <div class="doc-file-row" style="border:2px dashed var(--border);background:var(--bg);cursor:pointer">
+            <div class="doc-file-icon" style="background:var(--emerald-l)">➕</div>
+            <div style="flex:1"><div class="name" style="color:var(--emerald-d)">Додати документ</div><div class="spec">PDF, JPG, PNG, DICOM — до 50 МБ</div></div>
+          </div>
+        </div>
+
+        <!-- Оплати -->
+        <div id="pat-payments" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Оплати</h2>
+          <p class="sub" style="margin-bottom:16px">Історія платежів за консультації</p>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:20px">
+            <div class="card-title">Прив'язані методи оплати</div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:14px;padding:10px 16px;cursor:pointer">
+                <svg width="38" height="16" viewBox="0 0 38 16" fill="none"><text x="0" y="13" font-size="13" font-weight="700" fill="#000" font-family="sans-serif">Pay</text><text x="18" y="13" font-size="13" fill="#555" font-family="sans-serif">🍎</text></svg>
+                <span style="font-weight:700;font-size:14px">Apple Pay</span>
+                <span class="pay-status done">Активно</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:14px;padding:10px 16px;cursor:pointer">
+                <svg width="60" height="20" viewBox="0 0 60 20"><text x="0" y="15" font-size="13" font-weight="700" fill="#4285F4" font-family="sans-serif">G</text><text x="10" y="15" font-size="13" font-weight="700" fill="#EA4335" font-family="sans-serif">o</text><text x="19" y="15" font-size="13" font-weight="700" fill="#FBBC05" font-family="sans-serif">o</text><text x="28" y="15" font-size="13" font-weight="700" fill="#4285F4" font-family="sans-serif">g</text><text x="37" y="15" font-size="13" font-weight="700" fill="#34A853" font-family="sans-serif">le</text></svg>
+                <span style="font-weight:700;font-size:14px">Google Pay</span>
+                <span class="pay-status done">Активно</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;border:2px dashed var(--border);border-radius:14px;padding:10px 16px;cursor:pointer;background:var(--bg)">
+                <span style="font-size:20px">➕</span>
+                <span style="font-weight:700;font-size:14px;color:var(--muted)">Додати картку</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="card-title">Останні платежі</h3>
+          <div class="payment-row">
+            <div class="avatar" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">ОМ</div>
+            <div style="flex:1"><div class="name">Олена Мартиненко</div><div class="spec">Кардіологія · 09.05.2026</div></div>
+            <span class="pay-status done" style="margin-right:12px">Оплачено</span>
+            <div class="pay-amount">722 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar a4" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">ТР</div>
+            <div style="flex:1"><div class="name">Тарас Романюк</div><div class="spec">Реабілітологія · 28.04.2026</div></div>
+            <span class="pay-status done" style="margin-right:12px">Оплачено</span>
+            <div class="pay-amount">595 ₴</div>
+          </div>
+          <div class="payment-row">
+            <div class="avatar" style="width:42px;height:42px;font-size:13px;flex:0 0 auto">ОМ</div>
+            <div style="flex:1"><div class="name">Олена Мартиненко</div><div class="spec">Кардіологія · 15.04.2026</div></div>
+            <span class="pay-status done" style="margin-right:12px">Оплачено</span>
+            <div class="pay-amount">722 ₴</div>
+          </div>
+        </div>
+
+        <!-- Реферали -->
+        <div id="pat-referrals" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Реферали</h2>
+          <p class="sub" style="margin-bottom:16px">Друзі, яких ви запросили на платформу</p>
+          <div style="background:linear-gradient(135deg,var(--navy),#1A3A5C);color:#fff;border-radius:28px;padding:28px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+            <div>
+              <div class="spec" style="color:rgba(255,255,255,.55)">Ваш реферальний бонус</div>
+              <b style="font-family:Syne,sans-serif;font-size:36px">15%</b>
+              <div style="color:var(--emerald);font-weight:800;margin-top:4px">3 активних реферали · 127 ₴ зекономлено</div>
+            </div>
+            <div style="background:rgba(255,255,255,.1);border-radius:16px;padding:14px 20px;text-align:center">
+              <div style="font-size:11px;opacity:.6;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em">Ваше реферальне посилання</div>
+              <div style="font-family:Syne,sans-serif;font-weight:800;letter-spacing:.04em">IRYNA-MED15</div>
+              <button class="btn primary" style="margin-top:10px;padding:7px 14px;font-size:12px">Скопіювати</button>
+            </div>
+          </div>
+          <h3 class="card-title">Хто зареєструвався за вашим посиланням</h3>
+          <div class="pat-row">
+            <div class="pat-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">СП</div>
+            <div class="pat-info">
+              <div class="name">Світлана Павленко</div>
+              <div class="pat-next">Зареєструвалась 05.05.2026 · 1 консультація · Бонус: +5%</div>
+            </div>
+            <span class="pay-status done">Активна</span>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">МГ</div>
+            <div class="pat-info">
+              <div class="name">Михайло Гончаренко</div>
+              <div class="pat-next">Зареєструвався 22.04.2026 · 2 консультації · Бонус: +5%</div>
+            </div>
+            <span class="pay-status done">Активний</span>
+          </div>
+          <div class="pat-row">
+            <div class="pat-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">ВК</div>
+            <div class="pat-info">
+              <div class="name">Вікторія Кравченко</div>
+              <div class="pat-next">Зареєструвалась 10.04.2026 · 3 консультації · Бонус: +5%</div>
+            </div>
+            <span class="pay-status done">Активна</span>
+          </div>
+          <div class="pat-row" style="opacity:.5">
+            <div class="pat-avatar" style="background:#ccc">??</div>
+            <div class="pat-info">
+              <div class="name" style="color:var(--muted)">Очікується ще 2 реєстрації</div>
+              <div class="pat-next">Запросіть ще друзів — отримайте до 25% знижки</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Налаштування -->
+        <div id="pat-settings" class="doc-panel">
+          <h2 class="title" style="margin-bottom:4px">Налаштування</h2>
+          <p class="sub" style="margin-bottom:20px">Редагування особистих даних профілю</p>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:18px">
+            <div class="card-title">Фото профілю</div>
+            <div style="display:flex;align-items:center;gap:20px;margin-bottom:6px">
+              <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="border-radius:50%;flex:0 0 auto">
+                <defs><linearGradient id="pbg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#4facfe"/><stop offset="100%" style="stop-color:#00f2fe"/></linearGradient></defs>
+                <circle cx="50" cy="50" r="50" fill="url(#pbg2)"/>
+                <ellipse cx="50" cy="27" rx="21" ry="16" fill="#2C1A0E"/>
+                <ellipse cx="30" cy="38" rx="7" ry="11" fill="#2C1A0E"/>
+                <ellipse cx="70" cy="38" rx="7" ry="11" fill="#2C1A0E"/>
+                <rect x="29" y="32" width="42" height="8" rx="4" fill="#2C1A0E"/>
+                <ellipse cx="50" cy="50" rx="19" ry="21" fill="#FDDBB4"/>
+                <ellipse cx="43" cy="46" rx="3" ry="3.2" fill="#1A1A2E"/>
+                <ellipse cx="57" cy="46" rx="3" ry="3.2" fill="#1A1A2E"/>
+                <circle cx="44" cy="45" r="1" fill="#fff"/>
+                <circle cx="58" cy="45" r="1" fill="#fff"/>
+                <ellipse cx="39" cy="54" rx="5" ry="3" fill="#F4A0A0" opacity=".4"/>
+                <ellipse cx="61" cy="54" rx="5" ry="3" fill="#F4A0A0" opacity=".4"/>
+                <path d="M43 57 Q50 65 57 57" stroke="#C0392B" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M44 57.5 Q50 63 56 57.5" fill="#fff"/>
+                <rect x="44" y="70" width="12" height="10" rx="5" fill="#FDDBB4"/>
+                <path d="M18 100 Q32 76 50 80 Q68 76 82 100" fill="#2980B9"/>
+              </svg>
+              <div>
+                <button class="btn primary" style="display:block;margin-bottom:8px">Завантажити нове фото</button>
+                <button class="btn outline" style="display:block;font-size:12px">Видалити фото</button>
+              </div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:18px">
+            <div class="card-title">Особисті дані</div>
+            <div class="form-grid">
+              <div class="field"><label>Ім'я</label><input class="input" id="set-firstname" value="Ірина" oninput="document.getElementById('pat-display-name').textContent=this.value+' '+(document.getElementById('set-lastname').value||'')"></div>
+              <div class="field"><label>Прізвище</label><input class="input" id="set-lastname" value="Петренко" oninput="document.getElementById('pat-display-name').textContent=(document.getElementById('set-firstname').value||'')+' '+this.value"></div>
+              <div class="field"><label>Телефон</label><input class="input" value="+380 67 123 45 67"></div>
+              <div class="field"><label>Дата народження</label><input class="input" type="date" value="1992-03-14"></div>
+              <div class="field"><label>Місто</label><input class="input" value="Київ"></div>
+              <div class="field"><label>Стать</label><select class="input"><option>Жіноча</option><option>Чоловіча</option><option>Не вказувати</option></select></div>
+              <div class="field" style="grid-column:1/-1"><label>Email</label><input class="input" value="iryna.petrenko@gmail.com"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:18px">
+            <div class="card-title">Медична карта</div>
+            <div class="form-grid">
+              <div class="field"><label>Група крові</label><select class="input"><option>A (II) Rh+</option><option>O (I)</option><option>B (III)</option><option>AB (IV)</option></select></div>
+              <div class="field"><label>Алергії</label><input class="input" value="Пеніцилін"></div>
+              <div class="field" style="grid-column:1/-1"><label>Хронічні захворювання</label><input class="input" value="Артеріальна гіпертензія 1 ступеня"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:18px">
+            <div class="card-title">Методи оплати</div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4px">
+              <div style="display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:14px;padding:10px 16px">
+                <span style="font-size:18px">🍎</span><span style="font-weight:700">Apple Pay</span><span class="pay-status done">Активно</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:14px;padding:10px 16px">
+                <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#fff"/><text x="3" y="15" font-size="11" font-weight="800" fill="#4285F4" font-family="sans-serif">G</text></svg>
+                <span style="font-weight:700">Google Pay</span><span class="pay-status done">Активно</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;border:2px dashed var(--border);border-radius:14px;padding:10px 16px;cursor:pointer;background:var(--bg)">
+                <span style="font-size:18px">➕</span><span style="font-weight:700;color:var(--muted)">Картка</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions"><button class="btn outline">Скасувати</button><button class="btn primary">Зберегти зміни</button></div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <style>
     .doc-panel{display:none}.doc-panel.active{display:block}
@@ -394,7 +666,8 @@
     buttons.forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.screen)));
     document.querySelectorAll('[data-screen-link]').forEach(link=>link.addEventListener('click',()=>showScreen(link.dataset.screenLink)));
     document.querySelectorAll('.slot,.day.ok,.cday,.tab2').forEach(el=>el.addEventListener('click',()=>{const p=el.parentElement;if(p){[...p.children].forEach(x=>x.classList.remove('active'))}el.classList.add('active')}));
-    document.querySelectorAll('[data-doc-panel]').forEach(item=>{item.addEventListener('click',()=>{const panelId=item.dataset.docPanel;document.querySelectorAll('.doc-panel').forEach(p=>p.classList.remove('active'));document.getElementById(panelId).classList.add('active');document.querySelectorAll('[data-doc-panel]').forEach(s=>s.classList.remove('active'));item.classList.add('active');});});
+    document.querySelectorAll('[data-doc-panel]').forEach(item=>{item.addEventListener('click',()=>{const panelId=item.dataset.docPanel;const sidebar=item.closest('.sidebar');const mainSection=sidebar.nextElementSibling;mainSection.querySelectorAll('.doc-panel').forEach(p=>p.classList.remove('active'));document.getElementById(panelId).classList.add('active');sidebar.querySelectorAll('[data-doc-panel]').forEach(s=>s.classList.remove('active'));item.classList.add('active');});});
+    document.querySelectorAll('[data-pat-panel]').forEach(item=>{item.addEventListener('click',()=>{const panelId=item.dataset.patPanel;const sidebar=item.closest('.sidebar');const mainSection=sidebar.nextElementSibling;mainSection.querySelectorAll('.doc-panel').forEach(p=>p.classList.remove('active'));document.getElementById(panelId).classList.add('active');sidebar.querySelectorAll('[data-pat-panel]').forEach(s=>s.classList.remove('active'));item.classList.add('active');});});
   </script>
 </body>
 </html>
